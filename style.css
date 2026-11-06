@@ -1,0 +1,446 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-color: #0a0010;
+  --pink-light: #ffb3d1;
+  --pink-mid:   #ff7eb3;
+  --pink-dark:  #d94f8a;
+  --cream:      #fff4dc;
+  --gold:       #ffd166;
+  --gold-dark:  #e09c20;
+  --candle-1:   #ff6eb4;
+  --candle-2:   #a78bfa;
+  --candle-3:   #34d399;
+  --candle-4:   #fbbf24;
+  --candle-5:   #60a5fa;
+}
+
+body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 60%, #1a0030 0%, #0a0010 70%);
+  overflow: hidden;
+  perspective: 1000px;
+  padding-bottom: 60px;
+}
+
+/*
+   NỀN */
+.night {
+  position: fixed;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  filter: blur(0.1vmin);
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(180,100,255,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 10%, rgba(255,100,180,0.07) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* Sao */
+.night::before,
+.night::after {
+  content: '';
+  position: absolute;
+  width: 2px; height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow:
+    10vw 8vh 0 rgba(255,255,255,0.8),
+    25vw 15vh 0 rgba(255,255,255,0.6),
+    40vw 5vh 0 rgba(255,255,255,0.9),
+    60vw 12vh 0 rgba(255,255,255,0.7),
+    75vw 20vh 0 rgba(255,255,255,0.5),
+    85vw 7vh 0 rgba(255,255,255,0.8),
+    5vw 30vh 0 rgba(255,255,255,0.4),
+    90vw 35vh 0 rgba(255,255,255,0.6),
+    15vw 40vh 0 rgba(255,255,255,0.3),
+    50vw 25vh 0 rgba(255,255,255,0.5),
+    70vw 45vh 0 rgba(255,255,255,0.4),
+    30vw 50vh 0 rgba(255,255,255,0.3);
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+.night::after {
+  box-shadow:
+    18vw 18vh 0 rgba(255,255,255,0.5),
+    35vw 28vh 0 rgba(255,255,255,0.7),
+    55vw 8vh 0 rgba(255,255,255,0.4),
+    78vw 30vh 0 rgba(255,255,255,0.6),
+    92vw 15vh 0 rgba(255,255,255,0.3),
+    8vw 55vh 0 rgba(255,255,255,0.5),
+    45vw 60vh 0 rgba(255,255,255,0.3),
+    65vw 55vh 0 rgba(255,255,255,0.4);
+  animation-delay: 1.5s;
+}
+@keyframes twinkle {
+  0%   { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* 
+   TIÊU ĐỀ  */
+.happy-birthday {
+  color: white;
+  font-size: clamp(28px, 5vw, 54px);
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  text-align: center;
+  text-shadow:
+    0 0 20px rgba(255, 150, 200, 0.8),
+    0 0 60px rgba(255, 100, 180, 0.4);
+  animation: title-glow 2s ease-in-out infinite alternate;
+}
+@keyframes title-glow {
+  0%   { text-shadow: 0 0 20px rgba(255,150,200,0.8), 0 0 60px rgba(255,100,180,0.4); }
+  100% { text-shadow: 0 0 30px rgba(255,180,220,1),   0 0 80px rgba(255,130,200,0.7); }
+}
+
+/* Dòng ngày sinh */
+.birthday-date {
+  color: rgba(255, 220, 240, 0.75);
+  font-size: clamp(13px, 2vw, 18px);
+  position: fixed;
+  top: 118px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+  animation: fade-in-down 1s 1.2s both;
+}
+@keyframes fade-in-down {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/*
+   SCENE
+    */
+.scene {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Dòng chúc bên trái bánh */
+.wish-text {
+  position: fixed;
+  left: 18vw;
+  bottom: 28vh;
+  font-size: clamp(16px, 2.4vw, 24px);
+  color: rgba(255, 210, 230, 0.9);
+  text-align: center;
+  line-height: 1.9;
+  text-shadow: 0 0 15px rgba(255, 130, 180, 0.6);
+  animation: fade-in-left 1s 1.2s both;
+  letter-spacing: 0.04em;
+}
+@keyframes fade-in-left {
+  0%   { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* 
+   BÁNH SINH NHẬT
+   */
+.cake {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: cake-appear 1.2s var(--cake-delay, 1s) cubic-bezier(0.34,1.56,0.64,1) backwards;
+}
+@keyframes cake-appear {
+  0% { transform: scale(0) translateY(60px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ---- Nến ---- */
+.candles {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: -2px;
+  position: relative;
+  z-index: 20;
+}
+
+.candle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Thân nến */
+.candle__body {
+  width: 10px;
+  height: 36px;
+  border-radius: 3px 3px 2px 2px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset -2px 0 4px rgba(0,0,0,0.3), inset 2px 0 3px rgba(255,255,255,0.3);
+}
+.candle__body::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%;
+  width: 20%; height: 100%;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+}
+
+.candle--1 .candle__body { background: linear-gradient(to right, #e05090, var(--candle-1)); }
+.candle--2 .candle__body { background: linear-gradient(to right, #7c5fc9, var(--candle-2)); height: 28px; }
+.candle--3 .candle__body { background: linear-gradient(to right, #1fa870, var(--candle-3)); height: 42px; }
+.candle--4 .candle__body { background: linear-gradient(to right, #c48a10, var(--candle-4)); height: 32px; }
+.candle--5 .candle__body { background: linear-gradient(to right, #2870c8, var(--candle-5)); height: 38px; }
+
+/* Bấc nến */
+.candle__flame-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 30px;
+}
+
+/* Ngọn lửa */
+.candle__flame {
+  width: 10px;
+  height: 18px;
+  background: linear-gradient(to top, #ff9900, #ffdd00 40%, #fff 80%);
+  border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+  position: relative;
+  transform-origin: bottom center;
+  animation: flicker 1.2s ease-in-out infinite alternate;
+  box-shadow: 0 0 8px 3px rgba(255, 180, 0, 0.7), 0 0 20px 6px rgba(255, 120, 0, 0.4);
+  z-index: 2;
+}
+.candle--1 .candle__flame { animation-duration: 1.0s; }
+.candle--2 .candle__flame { animation-duration: 1.4s; animation-delay: 0.2s; }
+.candle--3 .candle__flame { animation-duration: 0.9s; animation-delay: 0.5s; }
+.candle--4 .candle__flame { animation-duration: 1.3s; animation-delay: 0.1s; }
+.candle--5 .candle__flame { animation-duration: 1.1s; animation-delay: 0.7s; }
+
+@keyframes flicker {
+  0%   { transform: scaleX(1)   scaleY(1)    rotate(-1deg); }
+  25%  { transform: scaleX(0.9) scaleY(1.05) rotate(1deg); }
+  50%  { transform: scaleX(1.1) scaleY(0.95) rotate(-2deg); }
+  75%  { transform: scaleX(0.95) scaleY(1.08) rotate(1.5deg); }
+  100% { transform: scaleX(1)   scaleY(1)    rotate(0deg); }
+}
+
+/* Hào quang lửa */
+.candle__flame-glow {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,220,80,0.5) 0%, transparent 70%);
+  animation: glow-pulse 1.2s ease-in-out infinite alternate;
+  top: 2px;
+}
+@keyframes glow-pulse {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Sparkle / ánh sáng bay lên từ nến */
+.candle__lights {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.flower__light {
+  position: absolute;
+  bottom: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  animation: light-ans 3s linear infinite backwards;
+}
+.flower__light:nth-child(odd)  { background-color: #ffe066; }
+.flower__light:nth-child(even) { background-color: #ff9fdf; }
+.flower__light--1 { left: -4px;  animation-delay: 0.3s; }
+.flower__light--2 { left:  4px;  animation-delay: 1.1s; }
+.flower__light--3 { left: -8px;  animation-delay: 1.8s; }
+.flower__light--4 { left:  8px;  animation-delay: 2.4s; }
+
+@keyframes light-ans {
+  0%   { opacity: 0; transform: translateY(0); }
+  20%  { opacity: 1; transform: translateY(-8vmin) translateX(-2px); }
+  60%  { opacity: 1; transform: translateY(-20vmin) translateX(2px); filter: blur(0.2vmin); }
+  100% { opacity: 0; transform: translateY(-35vmin); filter: blur(1vmin); }
+}
+
+/* ---- Tầng bánh ---- */
+.cake__tier {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Kem trang trí trên đỉnh tầng */
+.cake__frosting {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+.cake__frosting--top {
+  width: 130px;
+  height: 16px;
+  background: var(--cream);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  box-shadow: 0 -4px 0 rgba(255,255,255,0.4);
+}
+.cake__frosting--top::before,
+.cake__frosting--top::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  width: 18px; height: 14px;
+  background: var(--cream);
+  border-radius: 0 0 50% 50%;
+}
+.cake__frosting--top::before { left: 10px; }
+.cake__frosting--top::after  { right: 10px; }
+
+.cake__frosting--bottom {
+  width: 190px;
+  height: 18px;
+  background: var(--cream);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+.cake__frosting--bottom::before,
+.cake__frosting--bottom::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  width: 20px; height: 16px;
+  background: var(--cream);
+  border-radius: 0 0 50% 50%;
+}
+.cake__frosting--bottom::before { left: 15px; }
+.cake__frosting--bottom::after  { right: 15px; }
+
+/* Thân bánh */
+.cake__body {
+  position: relative;
+  overflow: hidden;
+}
+.cake__body--top {
+  width: 130px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffb6c1 0%, #ff85a1 50%, #e06080 100%);
+  border-radius: 0 0 6px 6px;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.15), 4px 0 0 rgba(0,0,0,0.1);
+}
+.cake__body--bottom {
+  width: 190px;
+  height: 80px;
+  background: linear-gradient(135deg, #ffc8d8 0%, #ff8fab 50%, #d4607a 100%);
+  border-radius: 0 0 8px 8px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.15), 5px 0 0 rgba(0,0,0,0.1);
+}
+
+/* Sọc trang trí trên thân bánh */
+.cake__stripe {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: rgba(255,255,255,0.15);
+}
+.cake__body--top .cake__stripe--1 { left: 30%; }
+.cake__body--top .cake__stripe--2 { left: 65%; }
+.cake__body--bottom .cake__stripe--1 { left: 25%; }
+.cake__body--bottom .cake__stripe--2 { left: 50%; }
+.cake__body--bottom .cake__stripe--3 { left: 75%; }
+
+/* Chấm trang trí */
+.cake__dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 4px var(--gold);
+  animation: dot-glow 2s ease-in-out infinite alternate;
+}
+@keyframes dot-glow {
+  0%   { box-shadow: 0 0 4px var(--gold); }
+  100% { box-shadow: 0 0 10px var(--gold), 0 0 20px rgba(255,209,102,0.5); }
+}
+.cake__body--top .cake__dot--1 { top: 20px; left: 15px; }
+.cake__body--top .cake__dot--2 { top: 35px; left: 55px; }
+.cake__body--top .cake__dot--3 { top: 15px; right: 18px; }
+
+.cake__body--bottom .cake__dot--1 { top: 20px; left: 20px; }
+.cake__body--bottom .cake__dot--2 { top: 45px; left: 50px; }
+.cake__body--bottom .cake__dot--3 { top: 15px; left: 90px; }
+.cake__body--bottom .cake__dot--4 { top: 50px; right: 40px; }
+.cake__body--bottom .cake__dot--5 { top: 20px; right: 15px; }
+
+/* Đĩa / mâm giữa 2 tầng & đáy */
+.cake__plate {
+  position: relative;
+  z-index: 5;
+}
+.cake__plate--top {
+  width: 150px;
+  height: 10px;
+  background: linear-gradient(to bottom, var(--cream), #e8d5b0);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.cake__plate--bottom {
+  width: 210px;
+  height: 12px;
+  background: linear-gradient(to bottom, var(--cream), #d4b896);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Đế bánh */
+.cake__stand {
+  width: 230px;
+  height: 14px;
+  background: linear-gradient(to bottom, #e8d5b0, #c4a070);
+  border-radius: 50% 50% 10px 10px / 60% 60% 10px 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+  position: relative;
+}
+.cake__stand::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px; height: 8px;
+  background: linear-gradient(to bottom, #b08040, #906020);
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* =====================
+   KHÔNG TẢI (giữ nguyên)
+   ===================== */
+.not-loaded * {
+  animation-play-state: paused !important;
+}
